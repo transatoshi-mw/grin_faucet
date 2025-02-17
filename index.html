@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+  <html lang="en-US">
+    <head>
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-P53NSV9J65"></script>
+      <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-P53NSV9J65');
+      </script>
+      <title>Grinminer.net</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="title" property="og:title" content="grinminer.net">
+      <meta name="Keywords" content="Grin, Mimblewimble, Mining, Solo, Pools, Ipollo, G1, Openwrt, Firmware, Wallet">
+      <meta name="Description" content="An alternative to the corporate cloud providing VPS services and tools to assist solo Grin miners.">
+      <link rel="apple-touch-icon" sizes="180x180" href="https://grin.mw/apple-touch-icon.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="https://grin.mw/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="https://grin.mw/favicon-16x16.png">
+      <link rel="manifest" href="https://grin.mw/site.webmanifest">
+      <meta name="theme-color" content="#fef102">
+      <!-- CSS Main  -->
+      <link rel="stylesheet" type="text/css" href="styles.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <body width="device-width">
+
+      <!--Banner-->
+      <a href="https://grinminer.net"><img src="images/web-banner.png" alt="grinminer-banner" class="responsive"></a>
+     
+      <!--Navigation links-->
+      <div class="topnav" id="myTopnav">
+        <a href="https://grinminer.net/api/" class="active">API</a>
+        <a href="https://grinminer.net/nodes/" class="active">Public Nodes</a>
+        <a href="https://grinminer.net/application/" class="active">VPS Application</a>
+        <a href="https://grinminer.net/download/" class="active">Firmware/Wallets</a>
+        <a href="https://faucet.grinminer.net" class="active">Testnet Faucet</a>
+        <a href="https://checker.grinminer.net" class="active">Wallet Checker</a>
+        <a href="https://explorer.grinminer.net" class="active">Mainnet Explorer</a>
+        <a href="https://testexplorer.grinminer.net" class="active">Testnet Explorer</a>
+        <a href="https://t.me/grinminer_net" class="active">Telegram</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+        </a>
+      </div>
+
+      <!--Subtitle-->
+      <div class="content">        
+      <div class="subtitle">
+          <h3>Provider of hosted public & private nodes + solo mining pools + a Trezor/Ledger compatible wallet.</h3>
+      </div>
+      
+      <!--Cloud Banner-->
+      <span class="cloud"><h3>Developed over 2 years to be an alternative to the corporate cloud.</h3></span> 
+      
+    <h1>Grin Testnet Faucet</h1>
+    <h2>You can request 1000tツ once every 24 hours 
+        <br>
+        Click once and wait for a repsonse
+        <br>
+        Wallet must be online
+    </h2>
+    <label for="address">Enter your Grin address:</label>
+    <input type="text" id="address" placeholder="your_grin_address" required>
+    <button id="sendButton">Request Funds</button>
+    <div id="response"></div>
+
+    <script>
+        document.getElementById('sendButton').addEventListener('click', async () => {
+            const address = document.getElementById('address').value;
+            const responseDiv = document.getElementById('response');
+
+            if (!address) {
+                responseDiv.textContent = 'Please enter a valid Grin address.';
+                return;
+            }
+
+            try {
+                const response = await fetch('https://<SITE_URL>:3030/send', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ address }),
+                });
+
+                const data = await response.json();
+                responseDiv.textContent = `Response: ${data.message}`;
+            } catch (error) {
+                responseDiv.textContent = `Error: ${error.message}`;
+            }
+        });
+    </script>
+  </body>
+  <footer width="device-width">
+    <div class="footer">
+      <p>Apply today or contact transatoshi via the Telegram link for more info on free and paid node/stratum hosting.</p>            
+      <p>mikkdfjjawqzw4bis5pwqwsbul3ndubhnbwtlumaeowlcigxgwk7n4yd.onion</p>
+    </div>  
+  </footer>
+</html>
